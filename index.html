@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eloísa Neleb Modas | Boutique Minimalista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FBF9F4',
+                            100: '#F4EFE6',
+                            200: '#E9DFCE',
+                            300: '#D8C7B0',
+                            800: '#5C5346',
+                            900: '#3D362C'
+                        },
+                        linen: '#F9F8F6'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ocultar scrollbar en el slide manteniendo la funcionalidad táctil */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-cream-50 text-cream-950 font-sans antialiased selection:bg-cream-200">
+
+    <!-- Top Announcement Bar -->
+    <div id="announcement-bar" class="bg-cream-900 text-cream-50 text-xs py-2.5 px-4 text-center tracking-[0.2em] uppercase font-medium">
+        Envío gratuito en pedidos superiores a 60€ • Nueva Colección Otoño
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="sticky top-0 z-40 bg-cream-50/90 backdrop-blur-md border-b border-cream-200/60 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <button id="mobile-menu-btn" class="md:hidden text-cream-900 text-xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="text-center md:text-left">
+                <a href="#" class="font-serif text-2xl sm:text-3xl tracking-widest text-cream-950 uppercase font-medium">
+                    Eloísa Neleb
+                </a>
+                <span class="block text-[10px] tracking-[0.3em] uppercase text-cream-800">Modas Boutique</span>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium text-cream-900">
+                <a href="#categorias-slide" class="hover:text-cream-800 transition-colors">Colecciones</a>
+                <a href="#catalogo" class="hover:text-cream-800 transition-colors">Catálogo</a>
+                <a href="#contacto" class="hover:text-cream-800 transition-colors">Contacto</a>
+            </nav>
+
+            <div class="flex items-center space-x-5">
+                <button onclick="toggleCart()" class="relative text-cream-900 hover:text-cream-800 transition-colors p-2" aria-label="Carrito">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 bg-cream-900 text-cream-50 text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="relative bg-cream-100 overflow-hidden border-b border-cream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-center lg:text-left">
+                <span class="text-xs tracking-[0.3em] uppercase text-cream-800 font-semibold bg-cream-200/60 px-3 py-1 rounded-full">Exclusividad & Confort</span>
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-cream-950 leading-tight">
+                    Elegancia Atemporal en Tonos Crema
+                </h1>
+                <p class="text-cream-800 text-sm sm:text-base max-w-lg mx-auto lg:mx-0 font-light leading-relaxed">
+                    Prendas de diseño minimalista creadas para resaltar la naturalidad y sofisticación femenina en cada ocasión.
+                </p>
+                <div class="pt-4 flex justify-center lg:justify-start">
+                    <a href="#catalogo" class="bg-cream-900 text-cream-50 px-8 py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-cream-800 transition-all text-center">
+                        Ver Colección
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-xl border border-cream-200">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=1000" alt="Boutique Look" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Slide Section (Carrusel Horizontal en la Home) -->
+    <section id="categorias-slide" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <span class="text-xs tracking-[0.25em] uppercase text-cream-800 font-medium">Explora por Estilo</span>
+                <h2 class="font-serif text-3xl mt-1 text-cream-950">Categorías Destacadas</h2>
+            </div>
+            <div class="hidden sm:flex space-x-2">
+                <button onclick="scrollCategories(-300)" class="w-10 h-10 rounded-full border border-cream-300 flex items-center justify-center hover:bg-cream-200 transition-colors"><i class="fa-solid fa-arrow-left text-xs"></i></button>
+                <button onclick="scrollCategories(300)" class="w-10 h-10 rounded-full border border-cream-300 flex items-center justify-center hover:bg-cream-200 transition-colors"><i class="fa-solid fa-arrow-right text-xs"></i></button>
+            </div>
+        </div>
+
+        <!-- Contenedor del Slide -->
+        <div id="categories-slider-container" class="flex overflow-x-auto space-x-6 pb-4 no-scrollbar scroll-smooth">
+            <!-- Se carga dinámicamente desde Airtable (tabla Categorias) o respaldo -->
+            <div class="min-w-[240px] sm:min-w-[280px] cursor-pointer group relative aspect-[3/4] overflow-hidden rounded bg-cream-200 flex-shrink-0" onclick="filterCategory('todos')">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="Ver Todo">
+                <div class="absolute inset-0 bg-gradient-to-t from-cream-950/70 via-cream-950/20 to-transparent flex items-end p-6">
+                    <span class="text-cream-50 text-sm tracking-[0.2em] uppercase font-medium">Ver Todo el Catálogo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-cream-200">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+            <div>
+                <span class="text-xs tracking-[0.25em] uppercase text-cream-800 font-medium">Catálogo Online</span>
+                <h2 class="font-serif text-3xl mt-1 text-cream-950">Prendas Disponibles</h2>
+            </div>
+            <!-- Category Filter Buttons -->
+            <div id="filter-buttons" class="flex flex-wrap gap-2 justify-center">
+                <button onclick="filterCategory('todos')" class="filter-btn px-4 py-2 text-xs tracking-[0.15em] uppercase bg-cream-900 text-cream-50 rounded transition-all">Todos</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center py-20 col-span-full text-cream-800">
+                <i class="fa-solid fa-spinner fa-spin text-2xl mb-2"></i>
+                <p class="text-xs tracking-widest uppercase">Cargando colección...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-cream-950/40 backdrop-blur-sm hidden justify-end">
+        <div class="bg-cream-50 w-full max-w-md h-full p-6 shadow-2xl flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-cream-200">
+                    <span class="font-serif text-xl tracking-widest uppercase">Tu Cesta</span>
+                    <button onclick="toggleCart()" class="text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="cart-items-container" class="divide-y divide-cream-200 overflow-y-auto max-h-[40vh] my-4">
+                    <!-- Items del carrito -->
+                </div>
+            </div>
+
+            <div class="border-t border-cream-200 pt-4 space-y-4">
+                <!-- Cupón de Descuento Box -->
+                <div class="bg-cream-100 p-3 rounded border border-cream-200">
+                    <div class="flex gap-2">
+                        <input type="text" id="coupon-input" placeholder="¿Código de descuento?" class="w-full text-xs bg-cream-50 border border-cream-200 rounded px-3 py-2 uppercase placeholder:normal-case">
+                        <button onclick="applyCoupon()" class="bg-cream-900 text-cream-50 px-4 py-2 text-[10px] tracking-widest uppercase font-medium rounded hover:bg-cream-800">Aplicar</button>
+                    </div>
+                    <p id="coupon-message" class="text-[10px] mt-1 text-cream-800"></p>
+                </div>
+
+                <div class="flex justify-between text-sm font-medium tracking-wide">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">0.00 €</span>
+                </div>
+                <div id="discount-row" class="flex justify-between text-xs text-emerald-800 tracking-wider hidden">
+                    <span id="discount-label">Descuento aplicado:</span>
+                    <span id="cart-discount">-0.00 €</span>
+                </div>
+                <div class="flex justify-between text-xs text-cream-800 tracking-wider">
+                    <span>Envío:</span>
+                    <span>Calculado al finalizar</span>
+                </div>
+                <div class="flex justify-between text-base font-serif font-bold pt-2 border-t border-cream-200">
+                    <span>Total:</span>
+                    <span id="cart-total">0.00 €</span>
+                </div>
+                <button onclick="proceedToCheckout()" class="w-full bg-cream-900 text-cream-50 py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-cream-800 transition-all text-center">
+                    Tramitar Pedido por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-cream-900 text-cream-100 mt-24 py-16 border-t border-cream-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+                <h3 class="font-serif text-2xl tracking-widest uppercase mb-4 text-cream-50">Eloísa Neleb</h3>
+                <p class="text-xs tracking-wider text-cream-300 font-light leading-relaxed">
+                    Boutique de moda femenina especializada en colecciones cápsula de diseño minimalista y tonos naturales.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs tracking-[0.2em] uppercase font-semibold mb-4 text-cream-200">Atención al Cliente</h4>
+                <p class="text-xs text-cream-300 mb-2">Lunes a Viernes de 10:00 a 14:00</p>
+                <p class="text-xs text-cream-300">soporte@eloisanelebmodas.com</p>
+            </div>
+            <div>
+                <h4 class="text-xs tracking-[0.2em] uppercase font-semibold mb-4 text-cream-200">Síguenos</h4>
+                <div class="flex justify-center md:justify-start space-x-4 text-lg">
+                    <a href="#" class="hover:text-cream-50 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-cream-50 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="hover:text-cream-50 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-cream-800/60 text-center text-[10px] tracking-[0.2em] uppercase text-cream-400">
+            Eloísa Neleb Modas © 2026. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Airtable & App Logic Script -->
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE AIRTABLE
+        // ==========================================
+        const AIRTABLE_API_KEY = 'TU_PAT_O_TOKEN_AQUI'; 
+        const AIRTABLE_BASE_ID = 'TU_BASE_ID_AQUI';     
+
+        let products = [];
+        let categories = [];
+        let coupons = [];
+        let cart = [];
+        let activeDiscount = null; // { code, type: 'percent'|'fixed', value }
+
+        // Datos de respaldo por si aún no has conectado Airtable
+        const fallbackProducts = [
+            { id: '1', name: 'Vestido Midi Lino Crema', price: 59.95, category: 'vestidos', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800', sizes: ['S', 'M', 'L'], colors: ['Crudo', 'Beis'] },
+            { id: '2', name: 'Blusa Seda Natural', price: 42.50, category: 'blusas', image: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?auto=format&fit=crop&q=80&w=800', sizes: ['S', 'M', 'L'], colors: ['Blanco', 'Champán'] },
+            { id: '3', name: 'Pantalón Palazzo Marfil', price: 49.95, category: 'pantalones', image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=800', sizes: ['S', 'M', 'L'], colors: ['Marfil', 'Negro'] },
+            { id: '4', name: 'Blazer Oversize Lino', price: 79.00, category: 'abrigos', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800', sizes: ['M', 'L'], colors: ['Beis Claro'] }
+        ];
+
+        const fallbackCategories = [
+            { name: 'Vestidos', slug: 'vestidos', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=600' },
+            { name: 'Blusas', slug: 'blusas', image: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?auto=format&fit=crop&q=80&w=600' },
+            { name: 'Pantalones', slug: 'pantalones', image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=600' },
+            { name: 'Abrigos', slug: 'abrigos', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600' }
+        ];
+
+        const fallbackCoupons = [
+            { code: 'BIENVENIDA10', type: 'percent', value: 10, active: true },
+            { code: 'VERANO15', type: 'fixed', value: 15, active: true }
+        ];
+
+        async function fetchAirtableData() {
+            if (AIRTABLE_API_KEY === 'TU_PAT_O_TOKEN_AQUI') {
+                console.log("Usando datos de prueba locales. Configura tus credenciales de Airtable en el script.");
+                products = fallbackProducts;
+                categories = fallbackCategories;
+                coupons = fallbackCoupons;
+                initApp();
+                return;
+            }
+
+            try {
+                // Peticiones paralelas a las tablas de Airtable
+                const [prodRes, catRes, coupRes] = await Promise.all([
+                    fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Productos`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }),
+                    fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Categorias`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }).catch(() => null),
+                    fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Cupones`, { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }).catch(() => null)
+                ]);
+
+                const prodData = await prodRes.json();
+                products = prodData.records.map(r => ({
+                    id: r.id,
+                    name: r.fields.Nombre || 'Sin nombre',
+                    price: r.fields.Precio || 0,
+                    category: r.fields.Categoria || 'general',
+                    image: r.fields.Imagen ? r.fields.Imagen[0].url : 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800',
+                    sizes: r.fields.Tallas ? r.fields.Tallas.split(',').map(s => s.trim()) : ['Única'],
+                    colors: r.fields.Colores ? r.fields.Colores.split(',').map(c => c.trim()) : ['Estándar']
+                }));
+
+                if (catRes && catRes.ok) {
+                    const catData = await catRes.json();
+                    categories = catData.records.map(r => ({
+                        name: r.fields.Nombre,
+                        slug: r.fields.Slug || r.fields.Nombre.toLowerCase(),
+                        image: r.fields.Imagen ? r.fields.Imagen[0].url : 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600'
+                    }));
+                } else {
+                    categories = fallbackCategories;
+                }
+
+                if (coupRes && coupRes.ok) {
+                    const coupData = await coupRes.json();
+                    coupons = coupData.records.map(r => ({
+                        code: r.fields.Codigo,
+                        type: r.fields.Tipo || 'percent',
+                        value: r.fields.Descuento || 0,
+                        active: r.fields.Activo !== false
+                    }));
+                } else {
+                    coupons = fallbackCoupons;
+                }
+
+                initApp();
+            } catch (error) {
+                console.error("Error conectando a Airtable, usando respaldo local:", error);
+                products = fallbackProducts;
+                categories = fallbackCategories;
+                coupons = fallbackCoupons;
+                initApp();
+            }
+        }
+
+        function initApp() {
+            renderCategoriesSlider();
+            renderProducts(products);
+            renderFilterButtons();
+        }
+
+        function renderCategoriesSlider() {
+            const container = document.getElementById('categories-slider-container');
+            let html = `
+                <div class="min-w-[240px] sm:min-w-[280px] cursor-pointer group relative aspect-[3/4] overflow-hidden rounded bg-cream-200 flex-shrink-0 shadow-sm" onclick="filterCategory('todos')">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="Todo">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cream-950/70 via-cream-950/20 to-transparent flex items-end p-6">
+                        <span class="text-cream-50 text-sm tracking-[0.2em] uppercase font-medium">Ver Todo</span>
+                    </div>
+                </div>
+            `;
+
+            html += categories.map(cat => `
+                <div class="min-w-[240px] sm:min-w-[280px] cursor-pointer group relative aspect-[3/4] overflow-hidden rounded bg-cream-200 flex-shrink-0 shadow-sm" onclick="filterCategory('${cat.slug}')">
+                    <img src="${cat.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90" alt="${cat.name}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cream-950/70 via-cream-950/20 to-transparent flex items-end p-6">
+                        <span class="text-cream-50 text-sm tracking-[0.2em] uppercase font-medium">${cat.name}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        function scrollCategories(distance) {
+            const container = document.getElementById('categories-slider-container');
+            container.scrollBy({ left: distance, behavior: 'smooth' });
+        }
+
+        function renderProducts(items) {
+            const grid = document.getElementById('products-grid');
+            if (items.length === 0) {
+                grid.innerHTML = '<p class="text-center col-span-full py-12 text-xs uppercase tracking-widest text-cream-800">No hay prendas en esta categoría.</p>';
+                return;
+            }
+
+            grid.innerHTML = items.map(p => `
+                <div class="group flex flex-col bg-cream-50 border border-cream-200/60 rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="aspect-[3/4] overflow-hidden bg-cream-100 relative">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-[10px] tracking-[0.2em] uppercase text-cream-800">${p.category}</span>
+                            <h3 class="font-serif text-base text-cream-950 mt-1">${p.name}</h3>
+                            <p class="text-cream-900 font-medium text-sm mt-2">${p.price.toFixed(2)} €</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-cream-200/60 space-y-2">
+                            <div class="grid grid-cols-2 gap-2">
+                                <select id="size-${p.id}" class="text-[11px] bg-cream-100 border border-cream-200 rounded px-2 py-1 uppercase">
+                                    ${p.sizes.map(s => `<option value="${s}">Talla: ${s}</option>`).join('')}
+                                </select>
+                                <select id="color-${p.id}" class="text-[11px] bg-cream-100 border border-cream-200 rounded px-2 py-1 uppercase">
+                                    ${p.colors.map(c => `<option value="${c}">Color: ${c}</option>`).join('')}
+                                </select>
+                            </div>
+                            <button onclick="addToCart('${p.id}')" class="w-full bg-cream-900 text-cream-50 py-2.5 text-[10px] tracking-[0.2em] uppercase font-medium hover:bg-cream-800 transition-all">
+                                Añadir a la Cesta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFilterButtons() {
+            const filterContainer = document.getElementById('filter-buttons');
+            const cats = ['todos', ...new Set(products.map(p => p.category))];
+            
+            filterContainer.innerHTML = cats.map(c => `
+                <button onclick="filterCategory('${c}')" class="filter-btn px-4 py-2 text-xs tracking-[0.15em] uppercase rounded transition-all ${c === 'todos' ? 'bg-cream-900 text-cream-50' : 'bg-cream-100 text-cream-900 hover:bg-cream-200'}">
+                    ${c.toUpperCase()}
+                </button>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            if (cat === 'todos') {
+                renderProducts(products);
+            } else {
+                renderProducts(products.filter(p => p.category.toLowerCase() === cat.toLowerCase()));
+            }
+            // Desplazarse suavemente al catálogo
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            drawer.classList.toggle('flex');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const sizeSelect = document.getElementById(`size-${productId}`);
+            const colorSelect = document.getElementById(`color-${productId}`);
+            
+            const selectedSize = sizeSelect ? sizeSelect.value : 'Única';
+            const selectedColor = colorSelect ? colorSelect.value : 'Estándar';
+
+            const cartItem = cart.find(item => item.id === productId && item.size === selectedSize && item.color === selectedColor);
+            if (cartItem) {
+                cartItem.quantity += 1;
+            } else {
+                cart.push({ ...product, size: selectedSize, color: selectedColor, quantity: 1 });
+            }
+
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const discountRow = document.getElementById('discount-row');
+            const discountEl = document.getElementById('cart-discount');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center py-8 text-xs uppercase tracking-widest text-cream-800">Tu cesta está vacía</p>';
+                subtotalEl.textContent = '0.00 €';
+                totalEl.textContent = '0.00 €';
+                discountRow.classList.add('hidden');
+                activeDiscount = null;
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, index) => {
+                subtotal += item.price * item.quantity;
+                return `
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <img src="${item.image}" class="w-12 h-16 object-cover rounded bg-cream-100">
+                        <div class="flex-grow">
+                            <h4 class="font-serif text-sm">${item.name}</h4>
+                            <p class="text-[11px] text-cream-800">Talla: ${item.size} | Color: ${item.color}</p>
+                            <p class="text-[11px] text-cream-800">Cant: ${item.quantity} x ${item.price.toFixed(2)} €</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-cream-800 hover:text-red-700 text-sm p-2"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
+
+            // Calcular descuento activo
+            let discountAmount = 0;
+            if (activeDiscount) {
+                if (activeDiscount.type === 'percent') {
+                    discountAmount = (subtotal * activeDiscount.value) / 100;
+                    document.getElementById('discount-label').textContent = `Descuento (${activeDiscount.code} - ${activeDiscount.value}%):`;
+                } else {
+                    discountAmount = activeDiscount.value;
+                    document.getElementById('discount-label').textContent = `Descuento (${activeDiscount.code}):`;
+                }
+                discountRow.classList.remove('hidden');
+                discountEl.textContent = `-${discountAmount.toFixed(2)} €`;
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            let finalTotal = Math.max(0, subtotal - discountAmount);
+            totalEl.textContent = `${finalTotal.toFixed(2)} €`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function applyCoupon() {
+            const codeInput = document.getElementById('coupon-input').value.trim().toUpperCase();
+            const msgEl = document.getElementById('coupon-message');
+
+            const found = coupons.find(c => c.code.toUpperCase() === codeInput && c.active);
+            if (found) {
+                activeDiscount = found;
+                msgEl.textContent = `¡Cupón "${found.code}" aplicado correctamente!`;
+                msgEl.className = "text-[10px] mt-1 text-emerald-700 font-medium";
+                updateCartUI();
+            } else {
+                activeDiscount = null;
+                msgEl.textContent = "Código de cupón no válido o caducado.";
+                msgEl.className = "text-[10px] mt-1 text-red-700 font-medium";
+                updateCartUI();
+            }
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Añade algún producto a la cesta antes de tramitar el pedido.');
+                return;
+            }
+            
+            let message = "Hola Eloísa Neleb Modas, me gustaría realizar el siguiente pedido:\n\n";
+            cart.forEach(item => {
+                message += `• ${item.name} (Talla: ${item.size} | Color: ${item.color}) x${item.quantity} - ${(item.price * item.quantity).toFixed(2)}€\n`;
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discountAmount = 0;
+            if (activeDiscount) {
+                discountAmount = activeDiscount.type === 'percent' ? (subtotal * activeDiscount.value) / 100 : activeDiscount.value;
+                message += `\nCupón aplicado: ${activeDiscount.code}`;
+            }
+            const total = Math.max(0, subtotal - discountAmount);
+            message += `\nTotal a pagar: ${total.toFixed(2)} €\n\n¿Cómo procedemos con el pago y envío?`;
+
+            const whatsappUrl = `https://wa.me/34600000000?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Mobile menu events
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.remove('hidden');
+        });
+
+        window.addEventListener('DOMContentLoaded', fetchAirtableData);
+    </script>
+</body>
+</html>
